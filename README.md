@@ -2,7 +2,6 @@
 
 ## Requirements
 
- - Fetch the data from the client side and not from server ("You need to fetch the data from the client side and render it in the browser. The data looks like this ....")
  - I need to create two subpages: /learn/<carId> and /shop/<carId>
  - Try to use [VCC-UI](https://vcc-ui.vercel.app/)
  - Try to create a filter for `bodyType`
