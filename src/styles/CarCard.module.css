@@ -1,0 +1,10 @@
+.card-wrapper {
+  max-width: 250px
+}
+
+.card-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center
+}
