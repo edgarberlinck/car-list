@@ -52,6 +52,7 @@ images:
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
+  _IMAGE_NAME: gcr.io/${PROJECT_ID}/${REPO_NAME}
   _SERVICE_NAME: car-list-ui
   _DEPLOY_REGION: us-central1
   _GCR_HOSTNAME: us.gcr.io
