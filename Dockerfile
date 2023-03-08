@@ -1,18 +1,22 @@
-# syntax=docker/dockerfile:1.4
-
-FROM node:18-alpine
-
+FROM node:alpine as build
 ARG NEXT_PUBLIC_IMAGE_URL
 
-COPY ./package.json .
-COPY ./yarn.lock .
+WORKDIR /app
+COPY package.json yarn.lock ./
+
 RUN yarn install --frozen-lockfile
+COPY . .
 
-COPY ./src ./src
-COPY next.config.js .
-COPY tsconfig.json .
-COPY ./public .
+RUN NEXT_PUBLIC_IMAGE_URL=$NEXT_PUBLIC_IMAGE_URL  yarn build
 
-RUN NEXT_PUBLIC_IMAGE_URL=$NEXT_PUBLIC_IMAGE_URL yarn build 
+RUN npm prune --production
+FROM node:alpine
+WORKDIR /app
 
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+
+EXPOSE 3000
 CMD ["yarn", "start"]
