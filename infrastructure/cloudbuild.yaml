@@ -26,7 +26,7 @@ steps:
         docker push ${_IMAGE_NAME}:$COMMIT_SHA
         docker push ${_IMAGE_NAME}:$_CLEAN_BRANCH_NAME
 
-images: ["${_TEST_IMAGE_NAME}:$COMMIT_SHA", "${_TEST_IMAGE_NAME}:$_CLEAN_BRANCH_NAME"]
+images: ["${_IMAGE_NAME}:$COMMIT_SHA", "${_IMAGE_NAME}:$_CLEAN_BRANCH_NAME"]
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
