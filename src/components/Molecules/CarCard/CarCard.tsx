@@ -26,10 +26,10 @@ const CarCard: React.FC<CarCardPropType> = ({ id, modelName, bodyType, modelType
         <CarImage src={imageUrl} alt={modelName} />
       </div>
 
-      <Flex className={style['card-controls']}>
+      <div className={style['card-controls']}>
         <NavLink href={`/learn/${id}`}>Learn</NavLink>
         <NavLink href={`/shop/${id}`}>Shop</NavLink>
-      </Flex>
+      </div>
     </div>
   )
 }

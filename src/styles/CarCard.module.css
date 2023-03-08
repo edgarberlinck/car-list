@@ -7,7 +7,8 @@
 }
 
 .card-controls {
-  flex-direction: row !important; /* TODO: Maybe is my lack of experience with VCC-ui, but I don't know if there is a beter whay to do it */
+  display: flex;
+  flex-direction: row;
   gap: 15px;
   justify-content: center;
 }
