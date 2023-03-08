@@ -30,10 +30,10 @@ images: ["${_IMAGE_NAME}:$COMMIT_SHA", "${_IMAGE_NAME}:$_CLEAN_BRANCH_NAME"]
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
-  _IMAGE_NAME: gcr.io/${PROJECT_ID}/${REPO_NAME}
+  _IMAGE_NAME: eu.gcr.io/${PROJECT_ID}/${REPO_NAME}
   _SERVICE_NAME: car-list-ui
   _DEPLOY_REGION: us-central1
-  _GCR_HOSTNAME: us.gcr.io
+  _GCR_HOSTNAME: eu.gcr.io
   _PLATFORM: managed
   _TRIGGER_ID: 7191c5c6-bd4c-4475-a899-568548874a6d
   _CLEAN_BRANCH_NAME: ${BRANCH_NAME//\//-}
