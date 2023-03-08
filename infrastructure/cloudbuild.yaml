@@ -28,25 +28,34 @@ steps:
   #     - '-f'
   #     - Dockerfile
   #   id: Build
-  - name: gcr.io/cloud-builders/docker
+  # - name: gcr.io/cloud-builders/docker
+  #   args:
+  #     - push
+  #     - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+  #   id: Push
+  # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+  #   args:
+  #     - run
+  #     - services
+  #     - update
+  #     - $_SERVICE_NAME
+  #     - '--platform=managed'
+  #     - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+  #     - >-
+  #       --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID
+  #     - '--region=$_DEPLOY_REGION'
+  #     - '--quiet'
+  #   id: Deploy
+  #   entrypoint: gcloud
+  - id: 'push-docker'
+    waitFor: ['build-docker']
+    name: 'gcr.io/cloud-builders/docker:20.10.14'
+    entrypoint: 'bash'
     args:
-      - push
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
-    id: Push
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
-    args:
-      - run
-      - services
-      - update
-      - $_SERVICE_NAME
-      - '--platform=managed'
-      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
-      - >-
-        --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID
-      - '--region=$_DEPLOY_REGION'
-      - '--quiet'
-    id: Deploy
-    entrypoint: gcloud
+      - '-c'
+      - |
+        docker push ${_IMAGE_NAME}:$COMMIT_SHA
+        docker push ${_IMAGE_NAME}:$_CLEAN_BRANCH_NAME
 images:
   - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
 options:
