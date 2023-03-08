@@ -1,8 +1,26 @@
 import Head from 'next/head'
 import CarCard from '@/components/Molecules/CarCard/CarCard'
 import { ThemePicker, StyleProvider } from 'vcc-ui'
+import { GetServerSideProps } from 'next'
+import { Car } from '@/types/car'
+import { fetchCarList } from '@/lib/cars'
 
-export default function Home() {
+type HomePropTypes = {
+  carList: Car[]
+}
+
+export const getServerSideProps: GetServerSideProps<HomePropTypes> = async (ctx) => {
+  const carList = await fetchCarList()
+
+  return {
+    props: {
+      carList
+    }
+  }
+}
+
+export default function Home({ carList }: HomePropTypes) {
+  console.log(carList)
   return (
     <StyleProvider>
       <ThemePicker variant="light">
@@ -13,7 +31,7 @@ export default function Home() {
           <link rel="icon" href="https://www.volvocars.com/static/shared/images/favicons/favicon-32x32.v2.png" />
         </Head>
         <main>
-          <CarCard id='xc90-recharge' modelName='XC90 Recharge' bodyType='suv' modelType='plug-in hybrid' imageUrl='/images/xc90_recharge.jpg' /> 
+          { carList.map((car: Car) => (<CarCard key={car.id} id={car.id} modelName={car.modelName} bodyType={car.bodyType} modelType={car.modelType} imageUrl={car.imageUrl} /> )) }
         </main>
       </ThemePicker>
     </StyleProvider>
