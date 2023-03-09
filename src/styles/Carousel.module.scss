@@ -1,0 +1,34 @@
+.flex {
+  display: flex;
+  gap: 15px
+}
+
+.carousel {
+  // navigator
+  & > :last-child {
+    @extend .flex;
+    justify-content: flex-end;
+  }
+  //////
+
+  & > .carousel-container {
+    & > .carousel-container-inner {
+      @extend .flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      margin-left: -1rem;
+    
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    
+      & > * {
+        scroll-snap-align: center;
+        margin-left: 1rem;
+      }
+    }
+  
+  }
+}

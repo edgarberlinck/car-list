@@ -1,5 +1,7 @@
-import { useState } from "react"
-import { Grid, Row, Col } from "vcc-ui"
+import { IconButton } from 'vcc-ui'
+import styles from '@/styles/Carousel.module.scss'
+import { useRef } from 'react'
+import { usePosition } from '@/hooks/usePosition'
 
 type CarouselPropTypes<T> = {
   items: T[]
@@ -8,18 +10,30 @@ type CarouselPropTypes<T> = {
 }
 
 const Carousel = <T extends unknown>({ items, renderItem, extractKey }: CarouselPropTypes<T>) => {
-  const [page, setPage] = useState<T[]>(items)
+  const ref = useRef<HTMLDivElement>(null)
+  const {
+    hasItemsOnLeft,
+    hasItemsOnRight,
+    scrollRight,
+    scrollLeft,
+  } = usePosition(ref)
 
   return (
-    <Grid>
-      <Row>
-        { page.map((item: T) => (
-          <Col size={3} key={extractKey(item)} data-testid={`item-${extractKey(item)}`}>
-            {renderItem(item)}
-          </Col>
-        )) }
-      </Row>
-    </Grid>
+    <div className={styles['carousel']}>
+      <div className={styles['carousel-container']}>
+        <div ref={ref} className={styles['carousel-container-inner']}>
+          { items.map((item: T) => (
+            <div key={extractKey(item)}>
+              {renderItem(item)}
+            </div>
+          )) }
+        </div>
+      </div>
+      <div>
+        <IconButton disabled={!hasItemsOnLeft} variant="outline" iconName="navigation-chevronback" aria-label='previous element' onClick={scrollLeft} />
+        <IconButton disabled={!hasItemsOnRight} variant="outline" iconName="navigation-chevronforward" aria-label='next element' onClick={scrollRight}/>
+      </div>
+    </div>
   )
 }
 

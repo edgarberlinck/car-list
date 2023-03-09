@@ -21,7 +21,6 @@ export const getServerSideProps: GetServerSideProps<HomePropTypes> = async (ctx)
 }
 
 export default function Home({ carList }: HomePropTypes) {
-  console.log(carList)
   return (
     <StyleProvider>
       <ThemePicker variant="light">

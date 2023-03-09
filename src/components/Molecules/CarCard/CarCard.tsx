@@ -1,5 +1,5 @@
 import { Flex, Text, useTheme } from "vcc-ui"
-import style from '@/styles/CarCard.module.css'
+import style from '@/styles/CarCard.module.scss'
 import CarImage from "@/components/Atoms/CarImage/CarImage"
 import NavLink from "@/components/Atoms/NavLink/NavLink"
 
