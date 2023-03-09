@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 export function usePosition(ref: React.RefObject<Element>) {
   const [prevElement, setPrevElement] = useState<Element | null>(null)
   const [nextElement, setNextElement] = useState<Element | null>(null)
+  const [currentElementIndex, setCurrentElementIndex] = useState<number>(0)
   
   useEffect(() => {
     const element = ref.current
@@ -49,6 +50,15 @@ export function usePosition(ref: React.RefObject<Element>) {
     return null
   }
 
+  function getElement(list: Element[], at: number): Element | null {
+    const sibling = at === 0 ? list[0] : list[at-1].nextElementSibling
+    if (sibling instanceof Element) {
+      setCurrentElementIndex(at)
+      return sibling
+    }
+    return null
+  }
+
   const scrollToElement = useCallback(
     (element: HTMLElement | null) => {
       const currentNode = ref.current
@@ -83,7 +93,10 @@ export function usePosition(ref: React.RefObject<Element>) {
     hasItemsOnLeft: prevElement !== null,
     hasItemsOnRight: nextElement !== null,
     scrollRight,
-    scrollLeft
+    scrollLeft,
+    getElement,
+    scrollToElement,
+    currentElementIndex
   }
 
 }

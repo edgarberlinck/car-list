@@ -4,13 +4,6 @@
 }
 
 .carousel {
-  // navigator
-  & > :last-child {
-    @extend .flex;
-    justify-content: flex-end;
-  }
-  //////
-
   & > .carousel-container {
     & > .carousel-container-inner {
       @extend .flex;
@@ -30,5 +23,36 @@
       }
     }
   
+  }
+}
+
+.carousel-navigator {
+  @extend .flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .carousel-navigator {
+    display: none;
+  }
+
+  .carousel-dots {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .dot {
+    border: solid 1px black;
+    padding: 5px;
+    border-radius: 50%;
+
+    &--selected {
+      border: solid 1px black;
+      padding: 5px;
+      border-radius: 50%;
+      background-color: black;
+    }
   }
 }

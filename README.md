@@ -11,9 +11,8 @@
 
  ## Data display
   
-  - The desktop view shows 4 cars and a navigator to see the next 4 cars
-  - The mobile view show a carrousel
+  - Both views display a carousel. The desktop version shows two arrows and the mobile shows dots
 
-  ## Live Demo
+## Live Demo
 
-   - https://car-list-g73jthabkq-od.a.run.app/
+  - https://car-list-g73jthabkq-od.a.run.app/
