@@ -5,6 +5,20 @@ export function usePosition(ref: React.RefObject<Element>) {
   const [nextElement, setNextElement] = useState<Element | null>(null)
   const [currentElementIndex, setCurrentElementIndex] = useState<number>(0)
   
+  const getElementIndex = useCallback((element: Element): number => {
+    const elements = ref.current?.children
+    if (elements) {
+      let  index = 0
+      for (let e of elements) {
+        if (element.innerHTML === e.innerHTML) {
+          return index
+        }
+        index++
+      }
+    }
+    return 0
+  }, [ref])
+
   useEffect(() => {
     const element = ref.current
     
@@ -17,7 +31,9 @@ export function usePosition(ref: React.RefObject<Element>) {
         const childRect = child.getBoundingClientRect()
         return rect.left <= childRect.left && rect.right >= childRect.right
       })
+      
       if (visibleElements.length > 0) {
+        setCurrentElementIndex(getElementIndex(visibleElements[0]))
         setPrevElement(getPrevElement(visibleElements))
         setNextElement(getNextElement(visibleElements))
       }
@@ -30,7 +46,7 @@ export function usePosition(ref: React.RefObject<Element>) {
     return () => {
       element.removeEventListener('scroll', update)
     }
-  }, [ref])
+  }, [ref, getElementIndex])
 
   function getPrevElement(list: Element[]): Element | null {
     const sibling = list[0].previousElementSibling
