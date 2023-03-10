@@ -1,4 +1,4 @@
-import LearnAbout from "@/components/Organisms/LearnAbout/LearnAbout"
+import LearnAbout from "@/components/Templates/LearnAbout/LearnAbout"
 import { fetchCarById } from "@/lib/cars"
 import { Car } from "@/types/car"
 import { GetServerSideProps } from "next"

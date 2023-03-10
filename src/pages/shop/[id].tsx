@@ -1,4 +1,4 @@
-import ShopCar from "@/components/Organisms/ShopCar/ShopCar"
+import ShopCar from "@/components/Templates/ShopCar/ShopCar"
 import { fetchCarById } from "@/lib/cars"
 import { Car } from "@/types/car"
 import { GetServerSideProps } from "next"
