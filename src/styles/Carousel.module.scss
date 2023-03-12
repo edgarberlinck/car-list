@@ -4,6 +4,9 @@
 }
 
 .carousel {
+  width: fit-content;
+  max-width: 100%;
+
   & > .carousel-container {
     & > .carousel-container-inner {
       @extend .flex;

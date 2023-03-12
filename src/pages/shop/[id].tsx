@@ -1,4 +1,4 @@
-import ShopCar from "@/components/Templates/ShopCar/ShopCar"
+import ShopCar from "@/components/Templates/ShopCarTemplate/ShopCarTemplate"
 import { fetchCarById } from "@/lib/cars"
 import { Car } from "@/types/car"
 import { GetServerSideProps } from "next"
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps<ShopCarPageProps> = async (c
   }
 }
 
-export default function Shop({ car }: ShopCarPageProps) {
+export default function ShopTemplate({ car }: ShopCarPageProps) {
   return (
     <StyleProvider>
       <ThemePicker variant="light">
