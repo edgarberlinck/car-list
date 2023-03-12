@@ -31,7 +31,7 @@ Just clone this repo, download the dependencies using `yarn` and `yarn dev` to r
 
 ### Hosting images
 
-It's not mandatory host the images at GCP, you can use anythign you want or just embeed then into `public/images` folder. If you decide to embeed the images you don't need to do anything, the images is already there. To host into a cloud you need to configure `NEXT_PUBLIC_IMAGE_URL` env var since we are using next image loader the resolve the address:
+It's not mandatory host the images at GCP, you can use anything you want or just embeed then into `public/images` folder. If you decide to embeed the images you don't need to do anything, the images is already there. To host into a cloud you need to configure `NEXT_PUBLIC_IMAGE_URL` env var since we are using next image loader the resolve the address:
 
 ```
 const GCPBucketLoader: ImageLoader = ({ src }) => {
