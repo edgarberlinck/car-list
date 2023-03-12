@@ -33,8 +33,8 @@ const HomeTemplate: React.FC<HomeTemplatePropType> = ({ carList, bodyTypes }) =>
                 onChange={ (e) => router.push(`/?bodyType=${e.target.value}`) }
               >
                 <View spacing={0.5}>
-                  <Radio key='all' value='all' label='All' />
-                  { bodyTypes.map((bodyType: string) => <Radio key={bodyType} value={bodyType} label={bodyType} />) }
+                  <Radio key='all' value='all' label='All' aria-label="all" />
+                  { bodyTypes.map((bodyType: string) => <Radio key={bodyType} value={bodyType} label={bodyType} aria-label={bodyType} />) }
                 </View>
               </RadioGroup>
             </Flex>
