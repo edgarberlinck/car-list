@@ -22,7 +22,6 @@
     "vcc-ui": "^3.15.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.31.2",
     "sass": "^1.58.3"
   }
 }
