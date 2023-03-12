@@ -43,4 +43,8 @@ const GCPBucketLoader: ImageLoader = ({ src }) => {
 
 I ran an accessibility test, the result is available [here](https://wave.webaim.org/report#/https://car-list-g73jthabkq-od.a.run.app/).
 
+### Know Bugs
+
+ - When I filter by bodytype the arrows "stop" to work. Maybe is because of how I calculate the position to "scroll to" next page, I really want to dig into it later but if you scoll into the container the arrows works again. This bug only affect the desktop version.
+
 
