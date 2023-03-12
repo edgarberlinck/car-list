@@ -23,7 +23,7 @@ const CarCard: React.FC<CarCardPropType> = ({ id, modelName, bodyType, modelType
       </Flex>
       
       <div className={style['card-image-wrapper']}>
-        <CarImage src={imageUrl} alt={`${modelName} car image`} />
+        <CarImage src={imageUrl} alt={`image of ${modelName}`} />
       </div>
 
       <div className={style['card-controls']}>
