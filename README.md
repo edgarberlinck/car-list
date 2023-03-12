@@ -39,5 +39,8 @@ const GCPBucketLoader: ImageLoader = ({ src }) => {
 }
 ```
 
+### Accessibility Test
+
+I ran an accessibility test, the result is available [here](https://wave.webaim.org/report#/https://car-list-g73jthabkq-od.a.run.app/).
 
 
